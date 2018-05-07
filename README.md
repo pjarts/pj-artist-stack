@@ -8,6 +8,7 @@ DynamoDB is configured with a TTL on an the `expires` property and will remove a
 ## Deploy
 * Change the value of `ARTIFACT_BUCKET` in the Makefile to a new or existing bucket in your own AWS account.
 * make sure you have you AWS credentials or AWS profile in your env variables
+* run `npm install`
 * run `make deploy`
 
 ## Testing
