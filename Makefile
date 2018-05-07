@@ -1,5 +1,5 @@
 STAGE ?= dev
-PROJECT = pj-artist-api
+PROJECT = pj-artist
 REGION ?= eu-west-1
 ARTIFACT_BUCKET = pjarts-deploy-bucket
 ARTIFACT_PREFIX = pj-artist-api
