@@ -39,7 +39,8 @@ describe('artist lambda', () => {
     lambda.__get__('dynamo').service = dynamodb
     lambda.__get__('process').env = {
       ARTIST_TABLE_NAME,
-      TTL: 60
+      TTL: '60',
+      REFETCH: '0'
     }
     await createArtistTable()
     await populateArtistTable()

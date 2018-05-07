@@ -71,18 +71,20 @@ module.exports = { handler }
  * @param {function} callback 
  */
 async function handleDynamoDBStream (event, context, callback) {
-  const dynamoRecords = event.Records.filter(
-    record => record.eventSource === 'aws:dynamodb' 
-      && record.eventName === 'REMOVE'
-      // only trigger on expired items
-      && record.dynamodb.OldImage.expires
-      && record.dynamodb.OldImage.expires.N < Math.floor(Date.now() / 1000)
-  )
-  await Promise.all(
-    dynamoRecords.map(record => {
-      return fetchAndSaveArtist(record.dynamodb.Keys.mbid.S)
-    })
-  )
+  if (Number(process.env.REFETCH) === 1) {
+    const dynamoRecords = event.Records.filter(
+      record => record.eventSource === 'aws:dynamodb' 
+        && record.eventName === 'REMOVE'
+        // only trigger on expired items
+        && record.dynamodb.OldImage.expires
+        && record.dynamodb.OldImage.expires.N < Math.floor(Date.now() / 1000)
+    )
+    await Promise.all(
+      dynamoRecords.map(record => {
+        return fetchAndSaveArtist(record.dynamodb.Keys.mbid.S)
+      })
+    )
+  }
   callback(null)
 }
 
@@ -121,7 +123,7 @@ async function saveArtistToDB (artist) {
     Item: Object.assign(
       {},
       artist,
-      { expires: Math.floor(Date.now() / 1000 + process.env.TTL) }
+      { expires: Math.floor(Date.now() / 1000 + Number(process.env.TTL)) }
     ),
     ConditionExpression: 'attribute_not_exists(mbid)',
     ReturnValues: 'ALL_OLD'

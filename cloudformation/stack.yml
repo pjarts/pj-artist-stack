@@ -55,6 +55,7 @@ Resources:
         Variables:
           ARTIST_TABLE_NAME: !Ref ArtistTable
           TTL: 604800 # one week
+          REFETCH: 1 # set to 0 to disable re-fetching artist data when it expires
       Events:
         QueryUsers:
           Type: Api
