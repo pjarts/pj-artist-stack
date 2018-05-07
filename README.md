@@ -29,3 +29,9 @@ You need the following installed on your system in order to run the unit tests
 * API Gateway
 * Node
 * Koa
+
+## To Do
+* Linting
+* Better error handling
+* Move artist data to S3?
+* Indexing?
