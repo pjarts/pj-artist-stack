@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+
+Resources:
+  ArtistTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: !Sub "${App}-artist"
+      StreamSpecification:
+        StreamViewType: OLD_IMAGE
+      TimeToLiveSpecification:
+        AttributeName: expires
+        Enabled: true
+      AttributeDefinitions:
+        - AttributeName: mbid
+          AttributeType: S
+      KeySchema:
+        - AttributeName: mbid
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  ArtistAPI:
+    Type: "AWS::Serverless::Api"
+    Properties:
+      StageName: !Ref Stage
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: !Ref Swagger
+
+  ArtistFunction:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: "index.handler"
+      Runtime: "nodejs8.10"
+      CodeUri: "../lambda/src"
+      Timeout: 30
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "dynamodb:DeleteItem"
+                - "dynamodb:GetItem"
+                - "dynamodb:PutItem"
+                - "dynamodb:Query"
+                - "dynamodb:Scan"
+                - "dynamodb:UpdateItem"
+              Resource:
+                - !GetAtt ArtistTable.Arn
+      Environment:
+        Variables:
+          ARTIST_TABLE_NAME: !Ref ArtistTable
+          TTL: 604800 # one week
+      Events:
+        QueryUsers:
+          Type: Api
+          Properties:
+            Path: /artist/{artist_id}
+            Method: GET
+            RestApiId: !Ref ArtistAPI
+        RefetchArtist:
+          Type: DynamoDB
+          Properties:
+            Stream: !GetAtt ArtistTable.StreamArn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 5
+
+Parameters:
+  App:
+    Type: String
+  Stage:
+    Type: String
+  Region:
+    Type: String
+  Swagger:
+    Type: String

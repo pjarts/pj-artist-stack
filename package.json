@@ -1,0 +1,21 @@
+{
+  "name": "music-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@mindhive/mock-aws": "^2.0.0",
+    "aws-sdk": "^2.231.1",
+    "jest": "^22.4.3",
+    "jsonschema": "^1.2.4",
+    "lambda-tester": "^3.4.0",
+    "nock": "^9.2.5",
+    "rewire": "^4.0.1",
+    "sinon": "^5.0.3"
+  }
+}

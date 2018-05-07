@@ -1,0 +1,116 @@
+---
+  swagger: "2.0"
+  info:
+    version: "2017-11-03T08:23:51Z"
+    title: "PJ Artist"
+  schemes:
+  - "https"
+  paths:
+    /artist/{artist_id}:
+      get:
+        consumes:
+        - "application/json"
+        produces:
+        - "application/json"
+        responses:
+          '200':
+            description: "200 response"
+            schema:
+              $ref: "#/definitions/ArtistResponse"
+            headers:
+              Access-Control-Allow-Origin:
+                type: "string"
+          '500':
+            description: "500 response"
+            schema:
+              $ref: "#/definitions/Error"
+        x-amazon-apigateway-integration:
+          responses:
+            default:
+              statusCode: "200"
+              responseParameters:
+                method.response.header.Access-Control-Allow-Origin: "'*'"
+          uri: 
+            Fn::Sub: "arn:aws:apigateway:${Region}:lambda:path/2015-03-31/functions/${ArtistFunction.Arn}/invocations"
+          httpMethod: "POST"
+          contentHandling: "CONVERT_TO_TEXT"
+          type: "aws_proxy"
+      options:
+        consumes:
+        - "application/json"
+        produces:
+        - "application/json"
+        responses:
+          '200':
+            description: "200 response"
+            schema:
+              $ref: "#/definitions/Empty"
+            headers:
+              Access-Control-Allow-Origin:
+                type: "string"
+              Access-Control-Allow-Methods:
+                type: "string"
+              Access-Control-Allow-Headers:
+                type: "string"
+        x-amazon-apigateway-integration:
+          responses:
+            default:
+              statusCode: "200"
+              responseParameters:
+                method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+                method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+                method.response.header.Access-Control-Allow-Origin: "'*'"
+          requestTemplates:
+            application/json: "{\"statusCode\": 200}"
+          passthroughBehavior: "when_no_match"
+          type: "mock"
+
+  definitions:
+    Empty:
+      type: "object"
+      title: "Empty Schema"
+    Recording:
+      type: object
+      properties:
+        mbid:
+          type: string
+        title:
+          type: string
+        cover:
+          type: string
+    Artist:
+      type: "object"
+      properties:
+        mbid:
+          type: "string"
+        name:
+          type: "string"
+        description:
+          type: "string"
+        recordings:
+          type: "array"
+          items:
+            $ref: "#/definitions/Recording"
+    Error:
+      type: "object"
+      properties:
+        message:
+          type: "string"
+      title: "Error Schema"
+    ArtistResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/definitions/Artist"
+  x-amazon-apigateway-gateway-responses:
+    DEFAULT_5XX:
+      responseParameters:
+        gatewayresponse.header.Access-Control-Allow-Methods: "'GET,DELETE,POST,OPTIONS'"
+        gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+        gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+    DEFAULT_4XX:
+      responseParameters:
+        gatewayresponse.header.Access-Control-Allow-Methods: "'GET,DELETE,POST,OPTIONS'"
+        gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+        gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+  

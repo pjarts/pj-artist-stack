@@ -1,0 +1,162 @@
+[
+  {
+    "mbid": "5a8e07d5-d932-4484-a7f7-e700793a9c94",
+    "releases": [
+      {
+        "title": "Keep This Fire Burning",
+        "id": "0548403e-e859-4f87-910d-424833ecd232",
+        "primaryType": "Single",
+        "releaseDate": "2002"
+      },
+      {
+        "title": "Be Mine",
+        "id": "087e8515-71ac-3a70-8e80-c36d6a660b33",
+        "primaryType": "Single",
+        "releaseDate": "2005-03-30"
+      },
+      {
+        "title": "Body Talk",
+        "id": "1e151a63-e906-4903-b108-b3ecf21218b4",
+        "primaryType": "Album",
+        "releaseDate": "2010-11-22"
+      },
+      {
+        "title": "Robyn's Best",
+        "id": "1ede3ebc-ecb2-4cc6-ab84-cc19372408cd",
+        "primaryType": "Album",
+        "releaseDate": "2004-06-01"
+      },
+      {
+        "title": "Electric",
+        "id": "1f24df3f-3ac6-3af0-8a52-43ea2779645c",
+        "primaryType": "Single",
+        "releaseDate": "1999"
+      },
+      {
+        "title": "Show Me Love",
+        "id": "29c4fb9e-f776-411a-a5ee-2b3d194dbf90",
+        "primaryType": "Single",
+        "releaseDate": "1997"
+      },
+      {
+        "title": "Konichiwa Bitches",
+        "id": "3e190c45-15bd-35e0-94a1-4401a8e16efa",
+        "primaryType": "Single",
+        "releaseDate": "2007-03-26"
+      },
+      {
+        "title": "Body Talk, Pt 1",
+        "id": "443c50a6-fe3e-46b3-8fc8-010e9575f7af",
+        "primaryType": "Album",
+        "releaseDate": "2010-06-14"
+      },
+      {
+        "title": "Robyn Is Here",
+        "id": "489f410a-11a1-32fe-8f0e-c28d794cfd89",
+        "primaryType": "Album",
+        "releaseDate": "1995-10-14"
+      },
+      {
+        "title": "Do You Know (What It Takes)",
+        "id": "6c17d1c9-cb60-30b9-80a9-e38213b8ac27",
+        "primaryType": "Single",
+        "releaseDate": "1997-05-13"
+      },
+      {
+        "title": "Body Talk, Pt 2",
+        "id": "7624f908-76ab-4e82-a8cc-8e77147e7070",
+        "primaryType": "Album",
+        "releaseDate": "2010-09-06"
+      },
+      {
+        "title": "Show Me Love",
+        "id": "845c4241-a604-32b5-b531-1e32b3412537",
+        "primaryType": "Single",
+        "releaseDate": "1998-02-16"
+      },
+      {
+        "title": "Dream On",
+        "id": "84b436a4-53d6-3133-b5a9-febc4c3e7449",
+        "primaryType": "Single",
+        "releaseDate": "2006"
+      },
+      {
+        "title": "Cobrastyle",
+        "id": "895d9755-91b7-3130-a125-eda94cafb077",
+        "primaryType": "Single",
+        "releaseDate": "2008-10"
+      },
+      {
+        "title": "Robyn",
+        "id": "8ba74d8f-46af-399d-ba00-6f0584dee8ad",
+        "primaryType": "Album",
+        "releaseDate": "2005"
+      },
+      {
+        "title": "Det bästa med Robyn",
+        "id": "91e04b0e-616f-425f-b593-ed79db229eb4",
+        "primaryType": "Album",
+        "releaseDate": "2006"
+      },
+      {
+        "title": "Dancehall Queen",
+        "id": "93cb15b7-97fa-4da6-9c11-ebb28f123264",
+        "primaryType": "Single",
+        "releaseDate": "2010-04-13"
+      },
+      {
+        "title": "Don’t Stop the Music",
+        "id": "a38f6f86-d7c0-348f-99a1-6ed01a45722a",
+        "primaryType": "Album",
+        "releaseDate": "2002-10-30"
+      },
+      {
+        "title": "Do You Really Want Me (Show Respect)",
+        "id": "a3d5deb3-995a-4c16-bd03-38139d7d3f41",
+        "primaryType": "Single",
+        "releaseDate": "1995"
+      },
+      {
+        "title": "Crash and Burn Girl",
+        "id": "abf241d2-8c8c-38a5-9e31-bd9c9828808e",
+        "primaryType": "Single",
+        "releaseDate": "2006"
+      },
+      {
+        "title": "With Every Heartbeat",
+        "id": "cd1390b3-f4d8-3775-840f-2f191cd68cea",
+        "primaryType": "Single",
+        "releaseDate": "2007-01-10"
+      },
+      {
+        "title": "Fembot",
+        "id": "dd34b998-4677-49d2-9549-e82a7ff7b993",
+        "primaryType": "Single",
+        "releaseDate": "2010-04-13"
+      },
+      {
+        "title": "Handle Me",
+        "id": "e37cb48e-f866-3be8-a244-b5930ea44259",
+        "primaryType": "Single",
+        "releaseDate": "2007-10-22"
+      },
+      {
+        "title": "My Truth",
+        "id": "e4aaf992-dd65-3ad7-a256-10149ddce312",
+        "primaryType": "Album",
+        "releaseDate": "1999-05-19"
+      },
+      {
+        "title": "Who's That Girl",
+        "id": "f3f86799-c5d1-3cb6-ad50-dec0f54992f6",
+        "primaryType": "Single",
+        "releaseDate": "2008-03"
+      }
+    ],
+    "name": "Robyn",
+    "type": "Person",
+    "country": "SE",
+    "gender": "Female",
+    "description": "Robin Miriam Carlsson (born 12 June 1979), known as Robyn, is a Swedish singer, songwriter and record producer. She arrived on the music scene with her 1995 debut album, Robyn Is Here, which produced two Billboard Hot 100 top-10 singles: \"Do You Know (What It Takes)\" and \"Show Me Love\". Her second and third albums, My Truth (1999) and Don't Stop the Music (2002), were released in Sweden. Robyn returned to international success with her fourth album, Robyn (2005), which brought critical praise and a Grammy Award nomination. The album spawned the singles \"Be Mine!\" and the UK number one \"With Every Heartbeat\". Robyn released a trilogy of mini-albums in 2010, known as the Body Talk series. They received broad critical praise, three Grammy Award nominations, and produced three top-10 singles: \"Dancing On My Own\", \"Hang with Me\" and \"Indestructible\". Robyn followed this with two collaborative EPs: Do It Again (2014) with Röyksopp, and Love Is Free (2015) with La Bagatelle Magique."
+  }
+]
