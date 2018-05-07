@@ -162,7 +162,7 @@ async function fetchArtistData (mbid) {
         }
       }
     }),
-    description: wikiData.extract
+    description: wikiData && wikiData.extract
   }
 }
 
