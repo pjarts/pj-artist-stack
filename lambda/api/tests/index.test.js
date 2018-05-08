@@ -181,10 +181,6 @@ function deleteArtistTable () {
 
 function apiGwEvent (artistId) {
   return {
-    "resource": "/artist/{artist_id}",
-    "requestContext": {
-      "resourcePath": "/artist/{artist_id}"
-    },
     "pathParameters": {
       "artist_id": artistId
     },

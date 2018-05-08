@@ -29,7 +29,8 @@ router
     const { mbid } = ctx.params
     let artist = await getArtistFromDB(mbid)
     if (!artist) {
-      await fetchAndSaveArtist(mbid)
+      const data = await fetchArtistData(mbid)
+      await saveArtistToDB(data)
       // fetch from the db in order to keep the responses consistent
       artist = await getArtistFromDB(mbid)
     }
@@ -50,53 +51,9 @@ app
  * @param {object} context 
  * @param {function} callback 
  */
-const handler = (event, context, callback) => {
-  // handle dynamodb event
-  if (event.Records) {
-    console.log(event, 'dynamodb event')
-    return handleDynamoDBStream(event, context, callback)
-  // handle API Gateway event
-  } else {
-    console.log(event, 'api gateway event')
-    return serverless(app)(event, context, callback)
-  }
-}
+const handler = serverless(app)
 
 module.exports = { handler }
-
-/**
- * Handler function for DynamoDB stream events
- * @param {object} event 
- * @param {object} context 
- * @param {function} callback 
- */
-async function handleDynamoDBStream (event, context, callback) {
-  if (Number(process.env.REFETCH) === 1) {
-    const dynamoRecords = event.Records.filter(
-      record => record.eventSource === 'aws:dynamodb' 
-        && record.eventName === 'REMOVE'
-        // only trigger on expired items
-        && record.dynamodb.OldImage.expires
-        && record.dynamodb.OldImage.expires.N < Math.floor(Date.now() / 1000)
-    )
-    await Promise.all(
-      dynamoRecords.map(record => {
-        return fetchAndSaveArtist(record.dynamodb.Keys.mbid.S)
-      })
-    )
-  }
-  callback(null)
-}
-
-/**
- * Fetches artist data from external APIs
- * and saves the result to the database
- * @param {string} mbid 
- */
-async function fetchAndSaveArtist (mbid) {
-  const data = await fetchArtistData(mbid)
-  return await saveArtistToDB(data)
-}
 
 /**
  * Gets an artist object from the DB

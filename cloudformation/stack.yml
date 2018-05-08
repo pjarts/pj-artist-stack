@@ -36,7 +36,7 @@ Resources:
     Properties:
       Handler: "index.handler"
       Runtime: "nodejs8.10"
-      CodeUri: "../lambda/src"
+      CodeUri: "../lambda/api/src"
       Timeout: 30
       Policies:
         - Version: "2012-10-17"
@@ -49,13 +49,11 @@ Resources:
                 - "dynamodb:Query"
                 - "dynamodb:Scan"
                 - "dynamodb:UpdateItem"
-              Resource:
-                - !GetAtt ArtistTable.Arn
+              Resource: !GetAtt ArtistTable.Arn
       Environment:
         Variables:
           ARTIST_TABLE_NAME: !Ref ArtistTable
           TTL: 604800 # one week
-          REFETCH: 1 # set to 0 to disable re-fetching artist data when it expires
       Events:
         QueryUsers:
           Type: Api
@@ -63,6 +61,32 @@ Resources:
             Path: /artist/{artist_id}
             Method: GET
             RestApiId: !Ref ArtistAPI
+        RefetchArtist:
+          Type: DynamoDB
+          Properties:
+            Stream: !GetAtt ArtistTable.StreamArn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 5
+  
+  DbStreamListener:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: "index.handler"
+      Runtime: "nodejs8.10"
+      CodeUri: "../lambda/dynamo/src"
+      Timeout: 30
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "lambda:InvokeFunction"
+              Resource: !GetAtt ArtistFunction.Arn
+      Environment:
+        Variables:
+          ARTIST_FUNCTION_NAME: !Ref ArtistFunction
+          REFETCH: 1 # set to 0 to disable re-fetching artist data when it expires
+      Events:
         RefetchArtist:
           Type: DynamoDB
           Properties:
